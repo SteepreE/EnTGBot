@@ -149,6 +149,12 @@ async def treatment_start(message: types.Message):
 @dp.message_handler(content_types=types.ContentTypes.ANY, state=TreatmentStates.treatment)
 async def add_treatment(message: types.Message, state):
     try:
+        if message.text == "Назад":
+            await state.finish()
+            await bot.send_message(message.from_user.id, """⚡️Ждем ваших обращений!""",
+                                   reply_markup=keyboards.get_user_keyboard())
+            return
+
         content_type = message.content_type
         data_id = get_content_id[content_type](message)
         caption = message.caption
