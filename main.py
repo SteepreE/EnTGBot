@@ -141,7 +141,7 @@ async def treatment_start(message: types.Message):
         await bot.send_message(message.from_user.id, """⚡️Помните, ваше обращение должно быть одним сообщением: если у вас есть фото\видео\документ, то описание к нему должно быть прикреплено сразу
     
 ⚡️В конце обращения оставьте свои контакты, чтобы мы могли связать с вами
-        """)
+        """, reply_markup=keyboards.get_back_keyboard())
     except Exception as e:
         logger.exception(e.args)
 
